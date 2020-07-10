@@ -1,7 +1,14 @@
 {
+  "name": "Rill News",
+  "author": "Don Vitalio",
+  "email": "rillnews0@gmail.com",
+  "version": "0.0.1",
+  "license": "MIT",
+  "private": true,
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
+    "now-build": "next build",
     "start": "next build; NODE_ENV=production node server.js",
     "ydev": "yarn run dev COSMIC_BUCKET=rillnews-project COSMIC_READ_KEY=NitleioLPMfvIhht7I85iKK9cHZAsDOn7XR0VikuIOOd9w5t5l",
     "ystart": " yarn start COSMIC_BUCKET=rillnews-project COSMIC_READ_KEY=NitleioLPMfvIhht7I85iKK9cHZAsDOn7XR0VikuIOOd9w5t5l"
@@ -10,7 +17,7 @@
     "axios": "^0.19.2",
     "express": "^4.17.1",
     "lodash": "^4.17.19",
-    "next": "^4.0.3",
+    "next": "^4.2.3",
     "next-routes": "^1.4.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"

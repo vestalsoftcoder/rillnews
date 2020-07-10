@@ -5,22 +5,23 @@ import Header from './partials/header'
 import helpers from '../helpers'
 import config from '../config'
 
-export default class extends React.Component {
-  static async getInitialProps({ req }) {
-    const query = `{
-      getObjects(bucket_slug: "${config.bucket.slug}", input: {
-        read_key: "${config.bucket.read_key}"
-      })
-      {
-        _id
-        type_slug
-        slug
-        title
-        metadata
-        created_at
-      }
-    }`
-    return await axios.post(`https://graphql.cosmicjs.com/v1`, { query })
+export async function getStaticProps({ req }) {
+
+  const query = `{
+    getObjects(bucket_slug: "${config.bucket.slug}", input: {
+      read_key: "${config.bucket.read_key}"
+    })
+    {
+      _id
+      type_slug
+      slug
+      title
+      metadata
+      created_at
+    }
+  }`
+
+  const allPosts = await axios.post(`https://graphql.cosmicjs.com/v1`, { query })
     .then(function (response) {
       return {
         cosmic: {
@@ -32,21 +33,29 @@ export default class extends React.Component {
     .catch(function (error) {
       console.log(error)
     })
+
+  return {
+    props: { allPosts }
   }
-  render() {
-    if (!this.props.cosmic)
+
+}
+
+export default function Index({ allPosts }) {
+
+  if (!allPosts.cosmic)
       return <div>Loading...</div>
-    return (
+
+  return (
       <div>
-        <Header cosmic={ this.props.cosmic }/>
+        <Header cosmic={ allPosts.cosmic }/>
         <main className="container">
           {
-            !this.props.cosmic.posts &&
+            !allPosts.cosmic.posts &&
             'You must add at least one Post to your Bucket'
           }
           {
-            this.props.cosmic.posts &&
-            this.props.cosmic.posts.map(post => {
+            allPosts.cosmic.posts &&
+            allPosts.cosmic.posts.map(post => {
               const friendly_date = helpers.friendlyDate(new Date(post.created_at))
               post.friendly_date = friendly_date.month + ' ' + friendly_date.date
               return (
@@ -71,7 +80,7 @@ export default class extends React.Component {
                       <a href={`/${post.slug}`}>Read more...</a>
                     </div>
                   </div>
-                </div>  
+                </div>
               )
             })
           }
@@ -79,5 +88,4 @@ export default class extends React.Component {
         <Footer />
       </div>
     )
-  }
 }

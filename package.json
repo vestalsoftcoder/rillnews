@@ -1,5 +1,5 @@
 {
-  "name": "Rill News",
+  "name": "Rillnews",
   "author": "Don Vitalio",
   "email": "rillnews0@gmail.com",
   "version": "0.0.1",
@@ -20,6 +20,7 @@
     "next": "^9.4.4",
     "next-routes": "^1.4.2",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "webpack": "^4.43.0"
   }
 }

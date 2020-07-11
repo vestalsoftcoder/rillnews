@@ -47,8 +47,8 @@ export default function Index({ allPosts }) {
 
   return (
       <div>
-      
-        <Header cosmic={ allPosts.cosmic }/>
+
+        <Header />
 
         <main className="container">
           {

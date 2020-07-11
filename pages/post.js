@@ -6,10 +6,12 @@ import helpers from '../helpers'
 import config from '../config'
 
 export async function getStaticProps({ query }) {
+
   const globals_query = `{
-    getObjects(bucket_slug: "${config.bucket.slug}", input: {
-      read_key: "${config.bucket.read_key}"
-    }) {
+    getObjects(
+      bucket_slug: "${config.bucket.slug}",
+      input: {read_key: "${config.bucket.read_key}"}
+    ) {
       type_slug
       slug
       title
@@ -18,6 +20,7 @@ export async function getStaticProps({ query }) {
       created_at
     }
   }`
+
   const globals = await axios.post(`https://graphql.cosmicjs.com/v1`, { query: globals_query })
   .then(function (response) {
     return _.keyBy(_.filter(response.data.data.getObjects, { type_slug: 'globals' }), 'slug')
@@ -28,8 +31,8 @@ export async function getStaticProps({ query }) {
   const post_query = `{
     getObject(bucket_slug: "${config.bucket.slug}", input: {
       read_key: "${config.bucket.read_key}",
-      slug: "${query.slug}",
-      revision: "${query.revision}"
+      slug: "${query}",
+      revision: ""
     }) {
       type_slug
       slug

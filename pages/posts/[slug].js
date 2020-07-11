@@ -1,11 +1,39 @@
 import axios from 'axios'
 import _ from 'lodash'
-import Footer from './partials/footer'
-import Header from './partials/header'
-import helpers from '../helpers'
-import config from '../config'
+import Footer from '../partials/footer'
+import Header from '../partials/header'
+import helpers from '../../helpers'
+import config from '../../config'
 
-export async function getStaticProps({ query }) {
+import Cosmic from 'cosmicjs'
+
+const BUCKET_SLUG = process.env.COSMIC_BUCKET_SLUG
+const READ_KEY = process.env.COSMIC_READ_KEY
+
+const bucket = Cosmic().bucket({
+  slug: BUCKET_SLUG,
+  read_key: READ_KEY
+})
+
+export async function getAllPostsWithSlug() {
+  const params = {
+    type: 'posts',
+    props: 'slug',
+  }
+  const data = await bucket.getObjects(params)
+  return data.objects
+}
+
+
+export async function getStaticPaths() {
+  const allPosts = (await getAllPostsWithSlug()) || []
+  return {
+    paths: allPosts.map((post) => `/posts/${post.slug}`),
+    fallback: true
+  }
+}
+
+export async function getStaticProps({ params }) {
 
   const globals_query = `{
     getObjects(
@@ -28,10 +56,11 @@ export async function getStaticProps({ query }) {
   .catch(function (error) {
     console.log(error)
   })
+
   const post_query = `{
     getObject(bucket_slug: "${config.bucket.slug}", input: {
       read_key: "${config.bucket.read_key}",
-      slug: "${query}",
+      slug: "${params.slug}",
       revision: ""
     }) {
       type_slug

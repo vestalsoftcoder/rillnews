@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next",
     "build": "next build",
     "now-build": "next build",
     "start": "next build; NODE_ENV=production node server.js",
@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "cosmicjs": "^3.2.48",
     "express": "^4.17.1",
     "lodash": "^4.17.19",
     "next": "^9.4.4",

@@ -8,10 +8,11 @@ export default function Header() {
       <link href="https://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet"/>
       <meta charset="UTF-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    </Head>,
-    <header className="header" key={2}>
-      <h1 className="site-title">
-      </h1>
-    </header>
+    </Head>
+    // ,
+    // <header className="header" key={2}>
+    //   <h1 className="site-title">
+    //   </h1>
+    // </header>
   )
 }

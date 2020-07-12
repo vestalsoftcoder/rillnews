@@ -6,7 +6,7 @@ import Header from './partials/header'
 import helpers from '../helpers'
 import config from '../config'
 
-export async function getStaticProps({ req }) {
+export async function getServerSideProps({ req }) {
 
   const query = `{
     getObjects(

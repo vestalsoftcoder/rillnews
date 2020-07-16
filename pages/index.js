@@ -69,11 +69,15 @@ const Index = ({ allPosts }) => {
                    <div className="card" data-href={`/${post.slug}`} key={post._id}>
                     {
                       post.metadata.hero.imgix_url &&
-                      <a href={`/${post.slug}`} className="blog-post-hero blog-post-hero--short" style={{ backgroundImage: `url(${post.metadata.hero.imgix_url})`}}></a>
+                      <Link as={`/posts/${slug}`} href="posts/[slug]">
+                        <a className="blog-post-hero blog-post-hero--short" style={{ backgroundImage: `url(${post.metadata.hero.imgix_url})`}} aria-label="Image of the old news article"></a>
+                      </Link>
                     }
                     <div className="card-padding">
                       <h2 className="blog__title blog__title--small">
-                        <a href={`/${post.slug}`}>{post.title}</a>
+                        <Link as={`/posts/${slug}`} href="posts/[slug]">
+                          <a aria-label="Title of the old news article">{post.title}</a>
+                        </Link>
                       </h2>
                       <div className="blog__author">
                         <a href={`/author/${post.metadata.author.slug}`}>
@@ -84,7 +88,9 @@ const Index = ({ allPosts }) => {
                       </div>
                       <div className="blog__teaser droid" dangerouslySetInnerHTML={{__html: post.metadata.teaser}}></div>
                       <div className="blog__read-more">
-                        <Link as={`/posts/${slug}`} href="posts/[slug]"><a>Read more...</a></Link>
+                        <Link as={`/posts/${slug}`} href="posts/[slug]">
+                          <a aria-label="Read more about old news article">Read more...</a>
+                        </Link>
                       </div>
                     </div>
                   </div>

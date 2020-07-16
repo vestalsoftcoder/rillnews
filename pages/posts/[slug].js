@@ -126,9 +126,11 @@ export default function Post({global, post}) {
                   <a href={`/author/${post.metadata.author.slug}`}>
                     <div className="blog__author-image" style={{ backgroundImage: `url(${post.metadata.author.metafields[0].imgix_url}?w=100)`}}></div>
                   </a>
+
                   <div className="blog__author-title">by <a href={`/author/${post.metadata.author.slug}`}>{post.metadata.author.title}</a> on {post.friendly_date}</div>
                   <div className="clearfix"></div>
                 </div>
+                <h3>{post.metadata.historical_date}</h3>
                 <div className="blog__teaser droid" dangerouslySetInnerHTML={{__html: post.content}}></div>
               </div>
             }

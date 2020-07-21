@@ -7,7 +7,7 @@ import helpers from '../helpers'
 import config from '../config'
 
 
-export async function getServerSideProps({ req }) {
+export async function getStaticProps({ req }) {
 
   const query = `{
     getObjects(
@@ -86,7 +86,13 @@ const Index = ({ allPosts }) => {
                         <div className="blog__author-title">by <a href={`/author/${post.metadata.author.slug}`}>{post.metadata.author.title}</a> on {post.friendly_date}</div>
                         <div className="clearfix"></div>
                       </div>
-                      <div className="blog__teaser droid" dangerouslySetInnerHTML={{__html: post.metadata.teaser}}></div>
+
+                      <Link as={`/posts/${slug}`} href="posts/[slug]">
+
+                          <div className="blog__teaser droid" dangerouslySetInnerHTML={{__html: post.metadata.teaser}}></div>
+                      
+                      </Link>
+
                       <div className="blog__read-more">
                         <Link as={`/posts/${slug}`} href="posts/[slug]">
                           <a aria-label="Read more about old news article">Read more...</a>

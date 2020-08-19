@@ -6,6 +6,7 @@ import Header from './partials/header'
 import helpers from '../helpers'
 import config from '../config'
 
+// Just comment added
 
 export async function getStaticProps({ req }) {
 
@@ -90,7 +91,7 @@ const Index = ({ allPosts }) => {
                       <Link as={`/posts/${slug}`} href="posts/[slug]">
 
                           <div className="blog__teaser droid" dangerouslySetInnerHTML={{__html: post.metadata.teaser}}></div>
-                      
+
                       </Link>
 
                       <div className="blog__read-more">

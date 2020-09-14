@@ -5,7 +5,7 @@ import Footer from './partials/footer'
 import Header from './partials/header'
 import helpers from '../helpers'
 import config from '../config'
-
+   
 // Just comment added
 
 export async function getStaticProps({ req }) {

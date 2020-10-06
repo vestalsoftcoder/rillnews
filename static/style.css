@@ -35,10 +35,13 @@ a {
 .footer {
   margin-top: 60px;
   margin-bottom: 60px;
-  padding: 0 20px; 
+  padding: 0 20px;
 }
 .copyright {
+  font-size: 2em;
   float: right;
+  padding: 10px;
+
 }
 .site-title {
   margin-bottom: 20px;

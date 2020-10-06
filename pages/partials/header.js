@@ -12,9 +12,10 @@ export default function Header() {
       <meta name="description" content="A historical old news of the passed and current times" />
     </Head>
     // ,
-    // <header className="header" key={2}>
-    //   <h1 className="site-title">
-    //   </h1>
-    // </header>
+    <header className="header">
+      <h1 className="site-title">
+        Rillnews Project (launched by placenta.codes internal intentions)
+      </h1>
+    </header>
   )
 }

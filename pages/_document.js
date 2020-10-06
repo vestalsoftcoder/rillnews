@@ -7,10 +7,14 @@ export default class MyDocument extends Document {
         <Head>
 
         </Head>
+
         <body>
+
           <Main />
           <NextScript />
+          
         </body>
+
       </Html>
     )
   }
